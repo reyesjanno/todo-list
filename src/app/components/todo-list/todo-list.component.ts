@@ -1,0 +1,106 @@
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-todo-list',
+  templateUrl: './todo-list.component.html',
+  styleUrls: ['./todo-list.component.scss']
+})
+
+export class TodoListComponent implements OnInit {
+
+  todos: Todo[];
+  todoTitle: string;
+  id: number;
+  beforeEdit: string;
+  newtitle: string
+
+  constructor() { }
+
+  ngOnInit() {
+    this.beforeEdit = '';
+    this.id = 3;
+    this.todoTitle = '';
+    this.todos = [
+      {
+        'id': 1,
+        'title': 'Learn Angular',
+        'completed': false,
+        'editing': false,
+      },
+      {
+        'id': 2,
+        'title': 'Create To Do List',
+        'completed': false,
+        'editing': false,
+      },
+      {
+        'id': 3,
+        'title': 'Recreate To Do List',
+        'completed': false,
+        'editing': false,
+      }
+    ];
+  }
+
+  addTodo() {
+    if (this.todoTitle.trim().length === 0) {
+      
+      alert('Please fill out the form')
+
+    } else {
+      
+      this.todos.push({
+        id: this.id +1,
+        title: this.todoTitle,
+        completed: false,
+        editing: false,
+      })
+      this.todoTitle = ''
+      this.id++;
+    }
+  }
+
+  editTodo(todo: Todo) {
+    this.beforeEdit = todo.title;
+    todo.editing = true;
+  }
+
+  doneEdit(todo: Todo) {
+    if(todo.title.trim().length === 0) {
+    todo.title = this.beforeEdit;
+
+    }
+    todo.editing = false;
+  }
+
+  cancelEdit(todo: Todo) {
+    todo.title = this.beforeEdit;
+    todo.editing = false;
+  }
+
+  deleteTodo(index) {
+    console.log(index)
+    this.todos.splice(index,1)
+  }
+
+  remaining():number {
+    return this.todos.filter(todo => !todo.completed).length;
+  }
+  done():number {
+    return this.todos.filter(todo => todo.completed).length;
+  }
+  active() {
+    return this.todos.filter(todo => !todo.completed);
+  }
+  transfered() {
+    return this.todos.filter(todo => todo.completed);
+  }
+
+}
+
+interface Todo {
+  id: number,
+  title: string,
+  completed: boolean,
+  editing: boolean,
+}

@@ -1,0 +1,41 @@
+.entry {
+    margin-bottom: 30px;
+}
+
+.remove {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #ff3547;
+}
+.confirm {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #00c851;
+}
+.edit {
+    // position: absolute;
+    // top: 0;
+    // right: 20px;
+    color: #33b5e5;
+}
+
+.item {
+    .list-item {
+        display: flex;
+        align-items: center;
+    }
+    .item--title {
+        display: inline-block;
+        margin-bottom: 0;
+    }
+    .badge {
+        vertical-align: text-top;
+    }
+}
+
+.text-success {
+    font-style: italic;
+    text-decoration: line-through;
+}

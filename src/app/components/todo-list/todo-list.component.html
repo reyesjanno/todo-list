@@ -1,0 +1,63 @@
+<h1 class="h1-responsive title text-center">My Angular To Do List</h1>
+<div class="mw-400 mxauto">
+  <div class="entry">
+    <div class="md-form">
+      <input type="text" id="form1" class="form-control" placeholder="add new item" [(ngModel)]="todoTitle" (keyup.enter)="addTodo()">
+    </div>
+  </div>
+  <div class="todo-list">
+    <div class="card mb30">
+      <div class="item card-body elegant-color white-text">
+        <h2 class="h2-responsive title text-center">Active tasks</h2>
+        <h3 class="h3-responsive title text-center" *ngIf="done() == this.todos.length">Hooray! No pending task!</h3>
+        <ul class="list-unstyled">
+          <li class="list-item relative" *ngFor="let todo of active();  let i = index">
+            <div class="custom-control custom-checkbox col-sm-12">
+                <input type="checkbox" class="custom-control-input" id="{{todo.title}}" [(ngModel)]="todo.completed">
+                <label class="custom-control-label item--title animated flipInY" for="{{todo.title}}" *ngIf="!todo.editing;else goEdit">{{todo.title}}</label>
+                <i class="fa fa-edit edit cursor-pointer pull-right" aria-hidden="true" (click)="editTodo(todo)" *ngIf="!todo.editing"></i>
+            </div>
+            <!-- <span class="badge badge-success" *ngIf="todo.completed">DONE!</span> -->
+            <!-- <i class="fa fa-window-close remove cursor-pointer" aria-hidden="true" (click)="deleteTodo(i)" *ngIf="!todo.editing"></i> -->
+            <ng-template #goEdit>
+              <div class="md-form w-100">
+                <input type="text" class="form-control w-100" [(ngModel)]="todo.title" autofocus (blur)="doneEdit(todo)" (keyup.enter)="doneEdit(todo)" (keyup.esc)="cancelEdit(todo)">
+                <i class="fa fa-check confirm cursor-pointer" aria-hidden="true" (click)="doneEdit(todo)"></i>
+              </div>
+            </ng-template>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card mb30">
+      <div class="item card-body elegant-color white-text">
+        <h2 class="h2-responsive title text-center">Completed tasks</h2>
+        <p class="basic text-center" *ngIf="done() == 0">Oopps no completed task yet ... please do you task ...</p>
+        <ul class="list-unstyled">
+          <li class="list-item relative" *ngFor="let todo of transfered();  let i = index">
+            <div class="custom-control custom-checkbox col-sm-12">
+                <input type="checkbox" class="custom-control-input" id="{{todo.title}}" [(ngModel)]="todo.completed">
+                <label class="custom-control-label item--title animated flipInY" for="{{todo.title}}" *ngIf="!todo.editing;else goEdit" [ngClass]="{'text-success': todo.completed}">{{todo.title}}</label>
+                <span class="badge badge-success pull-right" *ngIf="todo.completed">DONE!</span>
+            </div>
+            <!-- <i class="fa fa-edit edit cursor-pointer" aria-hidden="true" (click)="editTodo(todo)" *ngIf="!todo.editing"></i> -->
+            <!-- <i class="fa fa-window-close remove cursor-pointer" aria-hidden="true" (click)="deleteTodo(i)" *ngIf="!todo.editing"></i> -->
+            <ng-template #goEdit>
+              <div class="md-form w-100">
+                <input type="text" class="form-control w-100" [(ngModel)]="todo.title" autofocus (blur)="doneEdit(todo)" (keyup.enter)="doneEdit(todo)" (keyup.esc)="cancelEdit(todo)">
+                <i class="fa fa-check confirm cursor-pointer" aria-hidden="true" (click)="doneEdit(todo)"></i>
+              </div>
+            </ng-template>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="text-right">
+      {{done()}}/{{this.todos.length}} <span>Completed</span>
+    </div>
+
+  </div>
+</div>
+

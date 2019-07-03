@@ -28,9 +28,18 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/mdbootstrap/css/bootstrap.min.css",
+              "node_modules/mdbootstrap/css/mdb.min.css",
+              "node_modules/font-awesome/scss/font-awesome.scss",
+              "node_modules/angular-bootstrap-md/scss/bootstrap/bootstrap.scss",
+              "node_modules/angular-bootstrap-md/scss/mdb-free.scss",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              // "node_modules/mdbootstrap/js/jquery-3.4.1.min.js",
+              // "node_modules/mdbootstrap/js/bootstrap.min.js",
+              // "node_modules/mdbootstrap/js/mdb.min.js"
+            ]
           },
           "configurations": {
             "production": {
