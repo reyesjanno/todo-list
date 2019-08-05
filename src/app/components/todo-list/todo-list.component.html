@@ -56,7 +56,7 @@
               </ng-template>
             </li>
           </ul>
-          <span class="badge badge-danger pull-right cursor-pointer" *ngIf="done() > 0" (click)="deleteTodo()">Clear list</span>
+          <span class="badge badge-danger pull-right cursor-pointer" *ngIf="done() == this.todos.length" (click)="deleteTodo()">Clear list</span>
       </div>
     </div>
 
