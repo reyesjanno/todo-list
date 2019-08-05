@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.scss']
 })
+
 
 export class TodoListComponent implements OnInit {
 
@@ -74,13 +76,28 @@ export class TodoListComponent implements OnInit {
     }
   }
 
-  completeTodo(todo:Todo)  {
+  completeTodo(todo: Todo)  {
     todo.completed = true;
     localStorage.setItem(
       'todos',
       JSON.stringify(this.todos)
     );
   }
+  uncompleteTodo(todo: Todo)  {
+    todo.completed = false;
+    localStorage.setItem(
+      'todos',
+      JSON.stringify(this.todos)
+    );
+  }
+
+  // resetTodo(Todo) {
+  //   this.completed = false
+  //   localStorage.setItem(
+  //     'todos',
+  //     JSON.stringify(this.todos)
+  //   );
+  // }
 
   editTodo(todo: Todo) {
     this.beforeEdit = todo.title;
@@ -106,7 +123,8 @@ export class TodoListComponent implements OnInit {
 
   deleteTodo() {
     console.log()
-    this.todos = []
+    this.todos = [];
+    
     // Add to LS
     localStorage.setItem(
       'todos',

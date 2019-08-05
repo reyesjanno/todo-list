@@ -1,4 +1,4 @@
-<h1 class="h1-responsive title text-center">My Angular To Do List</h1>
+<h1 class="h1-responsive title text-center">My To Do List</h1>
 <div class="mw-400 mxauto">
   <div class="entry">
     <div class="md-form">
@@ -18,7 +18,7 @@
         <ul class="list-unstyled">
           <li class="list-item relative" *ngFor="let todo of active();  let i = index">
             <div class="custom-control custom-checkbox col-sm-12">
-                <input type="checkbox" class="custom-control-input" id="{{todo.title}}" (click)="completeTodo(todo)">
+                <input type="checkbox" class="custom-control-input" id="{{todo.title}}" [(ngModel)]="todo.completed" (click)="completeTodo(todo)">
                 <label class="custom-control-label item--title animated flipInY" for="{{todo.title}}" *ngIf="!todo.editing;else goEdit">{{todo.title}}</label>
                 <i class="fa fa-edit edit cursor-pointer pull-right" aria-hidden="true" (click)="editTodo(todo)" *ngIf="!todo.editing"></i>
             </div>
@@ -42,7 +42,7 @@
         <ul class="list-unstyled">
           <li class="list-item relative" *ngFor="let todo of transfered();  let i = index">
             <div class="custom-control custom-checkbox col-sm-12">
-                <input type="checkbox" class="custom-control-input" id="{{todo.title}}" [(ngModel)]="todo.completed">
+                <input type="checkbox" class="custom-control-input" id="{{todo.title}}" [(ngModel)]="todo.completed" (click)="uncompleteTodo(todo)">
                 <label class="custom-control-label item--title animated flipInY" for="{{todo.title}}" *ngIf="!todo.editing;else goEdit" [ngClass]="{'text-success': todo.completed}">{{todo.title}}</label>
                 <span class="badge badge-success pull-right" *ngIf="todo.completed">DONE!</span>
               </div>
@@ -56,7 +56,8 @@
               </ng-template>
             </li>
           </ul>
-          <span class="badge badge-danger pull-right cursor-pointer" *ngIf="done() == this.todos.length" (click)="deleteTodo()">Clear list</span>
+          <!-- <span class="badge badge-info pull-left cursor-pointer" *ngIf="done() == this.todos.length" (click)="resetTodo()">Reset list</span> -->
+          <span class="badge badge-danger pull-right cursor-pointer" *ngIf="done() == this.todos.length"  (click)="basicModal.show()" mdbWavesEffect>Clear list</span>
       </div>
     </div>
 
@@ -64,6 +65,24 @@
       {{done()}}/{{this.todos.length}} <span>Completed</span>
     </div>
 
+    <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p class="basic">are you sure you want to clear your list?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>Close</button>
+            <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="deleteTodo()" (click)="basicModal.hide()" mdbWavesEffect>Yes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
-
