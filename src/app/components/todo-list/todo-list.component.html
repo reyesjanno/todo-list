@@ -8,8 +8,13 @@
   <div class="todo-list">
     <div class="card mb30">
       <div class="item card-body elegant-color white-text">
-        <h2 class="h2-responsive title text-center">Active tasks</h2>
-        <h3 class="h3-responsive title text-center" *ngIf="done() == this.todos.length">Hooray! No pending task!</h3>
+        <div *ngIf="done() != this.todos.length; else goAdd">
+          <h2 class="h2-responsive title text-center">Active tasks</h2>
+        </div>
+        <ng-template #goAdd>
+          <h3 class="h3-responsive title text-center" *ngIf="done() == this.todos.length">Hooray! No pending task!</h3>
+          <p class="text-center">Add item to your list.</p>
+        </ng-template>
         <ul class="list-unstyled">
           <li class="list-item relative" *ngFor="let todo of active();  let i = index">
             <div class="custom-control custom-checkbox col-sm-12">
