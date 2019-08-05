@@ -78,9 +78,9 @@ export class TodoListComponent implements OnInit {
     todo.editing = false;
   }
 
-  deleteTodo(index) {
-    console.log(index)
-    this.todos.splice(index,1)
+  deleteTodo() {
+    console.log()
+    this.todos = []
   }
 
   remaining():number {
