@@ -18,27 +18,27 @@ export class TodoListComponent implements OnInit {
 
   ngOnInit() {
     this.beforeEdit = '';
-    this.id = 3;
+    this.id = null;
     this.todoTitle = '';
     this.todos = [
-      {
-        'id': 1,
-        'title': 'Learn Angular',
-        'completed': false,
-        'editing': false,
-      },
-      {
-        'id': 2,
-        'title': 'Create To Do List',
-        'completed': false,
-        'editing': false,
-      },
-      {
-        'id': 3,
-        'title': 'Recreate To Do List',
-        'completed': false,
-        'editing': false,
-      }
+      // {
+      //   'id': 1,
+      //   'title': 'Learn Angular',
+      //   'completed': false,
+      //   'editing': false,
+      // },
+      // {
+      //   'id': 2,
+      //   'title': 'Create To Do List',
+      //   'completed': false,
+      //   'editing': false,
+      // },
+      // {
+      //   'id': 3,
+      //   'title': 'Recreate To Do List',
+      //   'completed': false,
+      //   'editing': false,
+      // }
     ];
   }
 

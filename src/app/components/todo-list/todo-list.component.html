@@ -30,7 +30,7 @@
       </div>
     </div>
 
-    <div class="card mb30">
+    <div class="card mb30" *ngIf="this.todos.length > 0">
       <div class="item card-body elegant-color white-text">
         <h2 class="h2-responsive title text-center">Completed tasks</h2>
         <p class="basic text-center" *ngIf="done() == 0">Oopps no completed task yet ... please do your task ...</p>
