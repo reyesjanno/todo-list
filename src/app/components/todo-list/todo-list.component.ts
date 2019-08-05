@@ -74,6 +74,14 @@ export class TodoListComponent implements OnInit {
     }
   }
 
+  completeTodo(todo:Todo)  {
+    todo.completed = true;
+    localStorage.setItem(
+      'todos',
+      JSON.stringify(this.todos)
+    );
+  }
+
   editTodo(todo: Todo) {
     this.beforeEdit = todo.title;
     todo.editing = true;

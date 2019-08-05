@@ -18,7 +18,7 @@
         <ul class="list-unstyled">
           <li class="list-item relative" *ngFor="let todo of active();  let i = index">
             <div class="custom-control custom-checkbox col-sm-12">
-                <input type="checkbox" class="custom-control-input" id="{{todo.title}}" [(ngModel)]="todo.completed">
+                <input type="checkbox" class="custom-control-input" id="{{todo.title}}" (click)="completeTodo(todo)">
                 <label class="custom-control-label item--title animated flipInY" for="{{todo.title}}" *ngIf="!todo.editing;else goEdit">{{todo.title}}</label>
                 <i class="fa fa-edit edit cursor-pointer pull-right" aria-hidden="true" (click)="editTodo(todo)" *ngIf="!todo.editing"></i>
             </div>
