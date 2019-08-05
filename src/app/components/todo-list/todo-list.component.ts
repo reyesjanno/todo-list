@@ -40,6 +40,15 @@ export class TodoListComponent implements OnInit {
       //   'editing': false,
       // }
     ];
+    this.getTodos();
+  }
+  getTodos() {
+    if(localStorage.getItem('todos') === null) {
+      this.todos = [];
+    }
+    else {
+      this.todos = JSON.parse(localStorage.getItem('todos'))
+    }
   }
 
   addTodo() {
@@ -57,6 +66,11 @@ export class TodoListComponent implements OnInit {
       })
       this.todoTitle = ''
       this.id++;
+
+      localStorage.setItem(
+        'todos',
+        JSON.stringify(this.todos)
+      );
     }
   }
 
@@ -71,6 +85,10 @@ export class TodoListComponent implements OnInit {
 
     }
     todo.editing = false;
+    localStorage.setItem(
+      'todos',
+      JSON.stringify(this.todos)
+    );
   }
 
   cancelEdit(todo: Todo) {
@@ -81,6 +99,11 @@ export class TodoListComponent implements OnInit {
   deleteTodo() {
     console.log()
     this.todos = []
+    // Add to LS
+    localStorage.setItem(
+      'todos',
+      JSON.stringify(this.todos)
+    );
   }
 
   remaining():number {
