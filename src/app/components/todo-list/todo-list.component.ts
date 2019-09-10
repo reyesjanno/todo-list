@@ -121,17 +121,7 @@ export class TodoListComponent implements OnInit {
     todo.editing = false;
   }
 
-  deleteTodo(index) {
-    console.log(index)
-    this.todos.splice(index, 1)
-    
-    // Add to LS
-    localStorage.setItem(
-      'todos',
-      JSON.stringify(this.todos)
-    );
-  }
-  clearTodo() {
+  deleteTodo() {
     console.log()
     this.todos = [];
     

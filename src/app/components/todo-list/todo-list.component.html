@@ -1,5 +1,5 @@
 <h1 class="h1-responsive title text-center">My To Do List</h1>
-<div class="mw-600 mxauto">
+<div class="mw-400 mxauto">
   <div class="entry">
     <div class="md-form">
       <input type="text" id="form1" class="form-control" placeholder="add new item" [(ngModel)]="todoTitle" (keyup.enter)="addTodo()">
@@ -21,9 +21,9 @@
                 <input type="checkbox" class="custom-control-input" id="{{todo.title}}" [(ngModel)]="todo.completed" (click)="completeTodo(todo)">
                 <label class="custom-control-label item--title animated flipInY" for="{{todo.title}}" *ngIf="!todo.editing;else goEdit">{{todo.title}}</label>
                 <i class="fa fa-edit edit cursor-pointer pull-right" aria-hidden="true" (click)="editTodo(todo)" *ngIf="!todo.editing"></i>
-              </div>
-              <!-- <span class="badge badge-success" *ngIf="todo.completed">DONE!</span> -->
-              <i class="fa fa-window-close remove cursor-pointer" aria-hidden="true" (click)="deleteTodo(i)" *ngIf="!todo.editing"></i>
+            </div>
+            <!-- <span class="badge badge-success" *ngIf="todo.completed">DONE!</span> -->
+            <!-- <i class="fa fa-window-close remove cursor-pointer" aria-hidden="true" (click)="deleteTodo(i)" *ngIf="!todo.editing"></i> -->
             <ng-template #goEdit>
               <div class="md-form w-100">
                 <input type="text" class="form-control w-100" [(ngModel)]="todo.title" autofocus (blur)="doneEdit(todo)" (keyup.enter)="doneEdit(todo)" (keyup.esc)="cancelEdit(todo)">
@@ -65,26 +65,6 @@
       {{done()}}/{{this.todos.length}} <span>Completed</span>
     </div>
 
-    <!-- DELETE MODAL
-    <div mdbModal #deleteModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close pull-right" aria-label="Close" (click)="deleteModal.hide()">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <p class="basic">Are you sure you want to delete this item in your list?</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="deleteModal.hide()" mdbWavesEffect>Close</button>
-            <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="deleteTodo(i)" (click)="deleteModal.hide()" mdbWavesEffect>Yes</button>
-          </div>
-        </div>
-      </div>
-    </div> -->
-
     <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -98,10 +78,11 @@
           </div>
           <div class="modal-footer">
             <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>Close</button>
-            <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="clearTodo()" (click)="basicModal.hide()" mdbWavesEffect>Yes</button>
+            <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="deleteTodo()" (click)="basicModal.hide()" mdbWavesEffect>Yes</button>
           </div>
         </div>
       </div>
     </div>
+
   </div>
 </div>
